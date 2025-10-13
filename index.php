@@ -33,3 +33,5 @@ $reservation1 = new Reservation('10-13-2025', '2', true, '0', '10-20-2025', '10-
 
 var_dump($room1);
 var_dump($client2);
+
+echo reservationCount();

@@ -106,6 +106,17 @@ class Hotel{
 
     }
 
+    public function reservationCount() {
+        //Un hôtel va accéder aux tableaux de réservations de chaque chambre lui appartenant, pour compter le nombre de chambre et faire le total des réservations
+        foreach($this->_rooms as $room) {
+           
+            foreach($room->getReservations as $reservation){
+
+                print $reservation;
+            }
+        }
+    }
+
     //Méthode magique : toString
     public function __toString() {
         return  "Hôtel " . $this->_name . " à "  . $this->$_adress . ", " . $this->$_city . ", " . $this->$_postcode . ", " . $this->$_country . "<br>"; 

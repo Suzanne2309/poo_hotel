@@ -72,6 +72,14 @@ class Room{
         $this->_hotel = $hotel;
     }
 
+    /* Tableau des réservations pour la chambre */
+    public function getReservations() {
+        return $this->_reservations;
+    }
+    public function setReservations() {
+        $this->_reservations = $reservations;
+    }
+
     //Méthodes
     public function addReservation(Reservation $reservation) {
         $this->_reservations[] = $reservation;
@@ -79,6 +87,6 @@ class Room{
 
     //Méthode magique : toString
     public function __toString() {
-        return "The room n°" . $this->$_roomNb . " has " . $this->$_nbBeds . " bed(s) and cost " . $this->$_price . "€.<br>";
+        return "The room n°" . $this->$_roomNb . " has " . $this->$_nbBeds . " bed(s) and cost " . $this->$_price . "€. " . ($this->_wifi ? "Wifi" : "Sans Wifi") . " " . ($this->_status ? "Libre" : "Réservé") . "<br>";
     }
 }
