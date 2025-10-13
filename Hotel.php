@@ -2,78 +2,112 @@
 
 class Hotel{
     //Propriétés de classe
+    private string $_name;
     private string $_adress;
-    private int $_nbRooms;
-    private int $_nbReservedRooms;
-    private int $_nbFreeRooms;
-    private Room $_room; //Un hôtel peut avoir plusieurs chambres mais une chambre appartiendra à un hôtel (1-n mais 1-1)
-    private Client $_client; //Un hôtel peut avoir plusieurs clients et un client peut réserver dans plusieurs hôtels (0-n et 0-n)
+    private string $_postcode; //On met le code postale en string car à l'international, il peut y avoir des codes postaux avec des lettres
+    private string $_city;
+    private string $_country;
+    private bool $_spa = false; //On met la variable en type boolean car s'il y a un spa ce sera true et s'il y en pas la declaration est false
+    private bool $_restaurant = false; //On met la variable en type boolean car s'il y a un spa ce sera true et s'il y en pas la declaration est false
+    private array $_rooms; //Un hôtel aura un tableau de chambres lui appartenant
 
     //Méthode magique : Constructor
-    public function __construct($adress, $nbRooms, $nbReservedRooms, $nbFreeRooms,$room, $client){
+    public function __construct($name, $adress, $postcode, $city, $country, $spa, $restaurant) {
+        $this->_name = $name;
         $this->_adress = $adress;
-        $this->_nbRooms = $nbRooms;
-        $this->_nbReservedRooms = $nbReservedRooms;
-        $this->_nbFreeRooms = $nbFreeRooms;
-        $this->_room = $room;
-        $this->_client = $client;
+        $this->_postcode = $postcode;
+        $this->_city = $city;
+        $this->_country = $country;
+        $this->_spa = $spa;
+        $this->_restaurant = $restaurant;
+        $this->_rooms = []; //On définis le tableau rooms comme vide (en ne mettant rien dans les [])
     }
 
     //Getter et Setter
-    /* Adress */
-    public function getAdress(){
-        return $this->_adress;
+    /* Nom de l'hôtel */
+    public function getName() {
+        return $this->$_name;
     }
-    public function setAdress(){
+    public function setName() {
+        $this->_name = $name;
+    }
+
+    /* Adress */
+    public function getAdress() {
+        return $this->$_adress;
+    }
+    public function setAdress() {
         $this->_adress = $adress;
     }
 
-    /* Number of rooms */
-        public function getNbRooms(){
-        return $this->_nbRooms;
+    /* Postcode */
+    public function getPostcode() {
+        return $this->$_postcode;
     }
-    public function setNbRooms(){
-        $this->_nbRooms = $nbRooms;
-    }
-
-    /* Number of reserved rooms */
-        public function getNbReservedRooms(){
-        return $this->_nbReservedRooms;
-    }
-    public function setNbReservedRooms(){
-        $this->_nbReservedRooms = $nbReservedRooms;
+    public function setPostcode() {
+        $this->_postcode = $postcode;
     }
 
-    /* Number of free rooms */
-    public function getNbFreeRooms(){
-        return $this->_nbFreeRooms;
+    /* City */
+    public function getCity() {
+        return $this->$_city;
     }
-    public function setNbFreeRooms(){
-        $this->_nbFreeRooms = $nbFreeRooms;
-    }
-
-    /* Room */
-    public function getRoom(){
-        return $this->_room;
-    }
-    public function setRoom(){
-        $this->_room = $room;
+    public function setCity() {
+        $this->_city = $city;
     }
 
-    /* Client */
-    public function getClient(){
-        return $this->_client;
+    /* Country */
+    public function getCountry() {
+        return $this->$_country;
     }
-    public function setClient(){
-        $this->_client = $client;
+    public function setCountry() {
+        $this->_country = $country;
+    }
+
+    /* Spa */
+    public function getSpa() {
+        return $this->$_spa;
+    }
+    public function setSpa() {
+        $this->_spa = $spa;
+    }
+
+    /* Restaurant */
+    public function getRestaurant() {
+        return $this->$_restaurant;
+    }
+    public function setRestaurant() {
+        $this->_restaurant = $restaurant;
     }
 
     //Méthodes
-    public function reservation(){
-        //reservation
-    };
+    public function addRoom(Room $room){ //On crée la fonction pour ajouter chaque nouvelle chambre dans le tableau de l'hôtel correspondant. On va mettre la variable $room de la classe Room en paramètre, ainsi lorsqu'on y fera appel dans le constructor de Room il $this indiquera que la chambre qui est entrain d'être crée devra être ajouter dans le tableau
+        $this->_rooms[] = $room; //Dans cet hôtel ($this) on va ajouter la nouvelle chambre dans le tableau rooms
+    }
 
-    //Si chercher plus loin ajouter une méthode restaurant et/ou Spa ?
+    public function showRooms() {
+        $result = "";
+        foreach($this->_rooms as $room) {
+            $result .= $room . "<br>";
+        }
+        return $result;
+    }
 
-    //Méthode magique : toString à ajouter ?
+    public function nbRooms() { //On calcule le nombre de chambres dans le tableau rooms puis on affiche le total
+//        $nbRooms = count($_rooms);
+//        return $nbRooms;
+    }
+    
+    public function nbReservedRooms() { //On compte le nombres de chambres avec le status "reservé"
+
+    }
+    
+    public function nbFreeRooms() { //On compte le nombre de chambres avec le status "libre"
+
+    }
+
+    //Méthode magique : toString
+    public function __toString() {
+        return  "Hôtel " . $this->_name . " à "  . $this->$_adress . ", " . $this->$_city . ", " . $this->$_postcode . ", " . $this->$_country . "<br>"; 
+    }
 }

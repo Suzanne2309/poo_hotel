@@ -2,70 +2,45 @@
 
 class Client{
     //Propriétés de classe
-    private string $_nom;
-    private string $_prenom;
-    private string $_reservationDate;
-    private Room $_room;
-    private Hotel $_hotel;
+    private string $_firstName;
+    private string $_lastName;
+    private array $_reservations;
 
     //Méthode magique : Constructor
-    public function __construct($nom, $prenom, $reservationDate, $room, $client){
-        $this->_nom = $nom;
-        $this->_prenom = $prenom;
-        $this->_reservationDate = $reservationDate;
-        $this->_room = $room;
-        $this->_client = $client;
+    public function __construct($firstName, $lastName){
+        $this->_firstName = $firstName;
+        $this->_lastName = $lastName;
+        $this->_reservations = [];
     }
 
     //Getter et Setter
-    /* Adress */
-    public function getNom(){
-        return $this->_nom;
+    /* Prénom */
+    public function getFirstName(){
+        return $this->_firstName;
     }
-    public function setNom(){
-        $this->_nom = $nom;
-    }
-
-    /* Number of rooms */
-        public function getPrenom(){
-        return $this->_prenom;
-    }
-    public function setPrenom(){
-        $this->_prenom = $prenom;
+    public function setFirstName(){
+        $this->_firstName = $firstName;
     }
 
-    /* Number of reserved rooms */
-        public function getReservationDate(){
-        return $this->_reservationDate;
+    /* Nom de famille */
+    public function getLastName(){
+        return $this->_lastName;
     }
-    public function setReservationDate(){
-        $this->_reservationDate = $reservationDate;
-    }
-
-    /* Room */
-    public function getRoom(){
-        return $this->_room;
-    }
-    public function setRoom(){
-        $this->_room = $room;
-    }
-
-    /* Client */
-    public function getClient(){
-        return $this->_client;
-    }
-    public function setClient(){
-        $this->_client = $client;
+    public function setLastName(){
+        $this->_lastName = $lastName;
     }
 
     //Méthodes
-    public function arrival(){
-        //arrival
-    };
-
-    public function departure(){
-        //departure
+    public function addReservation(Reservation $reservation) {
+        $this->_reservations[] = $reservation;
     }
 
-    //Méthode magique : toString à ajouter ?
+    public function booking() {
+        
+    }
+
+    //Méthode magique : toString
+    public function __toString() {
+        return "" . $this->$_firstName . " " . $this->$_lastName . " ";
+    }
 }

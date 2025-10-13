@@ -2,32 +2,34 @@
 
 class Room{
     //Propriétés de classe
-    private int $_number;
+    private int $_roomNb;
     private int $_nbBeds;
     private float $_price;
-    private bool $_wifi; //-------booléan vrai = il ya la wifi et faux = il n'y a pas de wifi ? ou simplement string ?
-    private bool $_status; //-----booléan vrai = libre et faux = reservé ? ou simplement string ?
-    private Hotel $_hotel; //Une chambre appartient à un seul hôtel (1-1)
-    private Client $_client; //Une chambre peut accueilir plusieurs client mais une seule réservation -------- (est-ce qu'on se base pour cet exercice qu'il ya qu'un seul client par réservation/ pas de groupe)
+    private bool $_wifi = false; //On choisit un type d evariable booléan ou true = il ya la wifi et false = il n'y a pas de wifi
+    private bool $_status = true; //On choisit un type d evariable booléan true = libre et false = reservé
+    private array $_reservations; //On définis un tableau associatif contenant toutes les réservations liées à la chambre qui va être crée
+    private Hotel $_hotel; //On connecte la variable hotel qui permettra par la suite d'accéder au tableau des chambres de l'hôtel auquel la chambre appartiendra
+
 
     //Méthode magique : Constructor
-    public function __construct($number, $nbBeds, $price, $wifi, $status, $hotel, $client){
-        $this->_number = $number;
+    public function __construct($roomNb, $nbBeds, $price, $wifi, $status, $hotel) {
+        $this->_roomNb = $roomNb;
         $this->_nbBeds = $nbBeds;
         $this->_price = $price;
         $this->_wifi = $wifi;
         $this->_status = $status;
         $this->_hotel = $hotel;
-        $this->_client = $client;
+        $this->_reservations = []; //On définis le tableau des réservations comme vide (= [] en ne mettant rien entre les crochets) 
+        $hotel->addRoom($this); //La nouvelle chambre qui est entrain d'être crée ($this en paramère indique bien que c'est CETTE chambre), on l'ajoute grâce à la fonction addRoom dans le tableau des chambres de l'hôtel correspondant (tableau dans la classe Hotel)
     }
 
     //Getter et Setter
     /* Numéro de chambre */
-    public function getNumber(){
-        return $this->_number;
+    public function getRoomNb(){
+        return $this->_roomNb;
     }
-    public function setNumber(){
-        $this->_number = $number;
+    public function setRoomNb(){
+        $this->_roomNb = $roomNb;
     }
 
     /* Numbre de chambre */
@@ -54,7 +56,7 @@ class Room{
         $this->_wifi = $wifi;
     }
 
-    /* Statut de la chambre (réservé ou libre) */
+    /* Statut de la chambre */
     public function getStatus(){
         return $this->_status;
     }
@@ -63,23 +65,20 @@ class Room{
     }
 
     /* Hôtel */
-    public function getHotel(){
+    public function getHotel() {
         return $this->_hotel;
     }
-    public function setHotel(){
+    public function setHotel() {
         $this->_hotel = $hotel;
     }
 
-    /* Client */
-    public function getClient(){
-        return $this->_client;
-    }
-    public function setClient(){
-        $this->_client = $client;
-    }
-
     //Méthodes
-    //Si chercher plus loin ajouter une méthode appeler l'accueil et/ou Spa ?
+    public function addReservation(Reservation $reservation) {
+        $this->_reservations[] = $reservation;
+    }
 
-    //Méthode magique : toString à ajouter ?
+    //Méthode magique : toString
+    public function __toString() {
+        return "The room n°" . $this->$_roomNb . " has " . $this->$_nbBeds . " bed(s) and cost " . $this->$_price . "€.<br>";
+    }
 }
