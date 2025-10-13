@@ -12,14 +12,15 @@ class Room{
 
 
     //Méthode magique : Constructor
-    public function __construct($roomNb, $nbBeds, $price, $wifi, $status, $hotel) {
+    public function __construct($roomNb, $nbBeds, $price, $wifi, $status, $hotel, $reservations = []) {
         $this->_roomNb = $roomNb;
         $this->_nbBeds = $nbBeds;
         $this->_price = $price;
         $this->_wifi = $wifi;
         $this->_status = $status;
         $this->_hotel = $hotel;
-        $this->_reservations = []; //On définis le tableau des réservations comme vide (= [] en ne mettant rien entre les crochets) 
+//        $this->_reservations = []; //On définis le tableau des réservations comme vide (= [] en ne mettant rien entre les crochets)
+        $this->_reservations = $reservations;
         $hotel->addRoom($this); //La nouvelle chambre qui est entrain d'être crée ($this en paramère indique bien que c'est CETTE chambre), on l'ajoute grâce à la fonction addRoom dans le tableau des chambres de l'hôtel correspondant (tableau dans la classe Hotel)
     }
 
@@ -87,6 +88,6 @@ class Room{
 
     //Méthode magique : toString
     public function __toString() {
-        return "The room n°" . $this->$_roomNb . " has " . $this->$_nbBeds . " bed(s) and cost " . $this->$_price . "€. " . ($this->_wifi ? "Wifi" : "Sans Wifi") . " " . ($this->_status ? "Libre" : "Réservé") . "<br>";
+        return "Chambre n°" . $this->_roomNb . " ayant " . $this->_nbBeds . " lit(s) et coûte " . $this->_price . "€. La chambre à l'option " . ($this->_wifi ? "Avec Wifi" : "Sans Wifi") . ". Elle est actuellement " . ($this->_status ? "Libre" : "Réservé") . ".<br>";
     }
 }

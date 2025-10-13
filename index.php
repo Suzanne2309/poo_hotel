@@ -11,8 +11,8 @@ $hotel2 = new Hotel('Le Régent', '61 Rue Dauphine', '75006', 'PARIS', 'France',
 var_dump($hotel1);
 
 
-$room1 = new Room('1', '2', '125', true, true, $hotel1);
-$room2 = new Room('2', '1', '90', true, true, $hotel1);
+$room1 = new Room('1', '2', '125', true, true, $hotel1, []);
+$room2 = new Room('2', '1', '90', true, true, $hotel1, []);
 
 $room3 = new Room('1', '1', '50', false, true, $hotel2);
 
@@ -28,10 +28,10 @@ $client2 = new Client('Jennifer', 'SOLEIL');
 var_dump($client1);
 var_dump($client2);
 
-$reservation1 = new Reservation('10-13-2025', '2', true, '0', '10-20-2025', '10-25-2025', $room1, $client2);
-
+$reservation1 = new Reservation('10-13-2025', '2', true, '0', '10-20-2025', '10-25-2025', $room2, $client2);
+$reservation2 = new Reservation('10-16-2025', '1', false, '1', '11-05-2025', '11-15-2025', $room1, $client1);
 
 var_dump($room1);
 var_dump($client2);
 
-echo reservationCount();
+echo $hotel1->reservationAccess();

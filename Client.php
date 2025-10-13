@@ -41,6 +41,6 @@ class Client{
 
     //Méthode magique : toString
     public function __toString() {
-        return "" . $this->$_firstName . " " . $this->$_lastName . " ";
+        return "" . $this->_firstName . " " . $this->_lastName . " ";
     }
 }

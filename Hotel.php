@@ -26,7 +26,7 @@ class Hotel{
     //Getter et Setter
     /* Nom de l'hôtel */
     public function getName() {
-        return $this->$_name;
+        return $this->_name;
     }
     public function setName() {
         $this->_name = $name;
@@ -34,7 +34,7 @@ class Hotel{
 
     /* Adress */
     public function getAdress() {
-        return $this->$_adress;
+        return $this->_adress;
     }
     public function setAdress() {
         $this->_adress = $adress;
@@ -42,7 +42,7 @@ class Hotel{
 
     /* Postcode */
     public function getPostcode() {
-        return $this->$_postcode;
+        return $this->_postcode;
     }
     public function setPostcode() {
         $this->_postcode = $postcode;
@@ -50,7 +50,7 @@ class Hotel{
 
     /* City */
     public function getCity() {
-        return $this->$_city;
+        return $this->_city;
     }
     public function setCity() {
         $this->_city = $city;
@@ -58,7 +58,7 @@ class Hotel{
 
     /* Country */
     public function getCountry() {
-        return $this->$_country;
+        return $this->_country;
     }
     public function setCountry() {
         $this->_country = $country;
@@ -66,7 +66,7 @@ class Hotel{
 
     /* Spa */
     public function getSpa() {
-        return $this->$_spa;
+        return $this->_spa;
     }
     public function setSpa() {
         $this->_spa = $spa;
@@ -74,7 +74,7 @@ class Hotel{
 
     /* Restaurant */
     public function getRestaurant() {
-        return $this->$_restaurant;
+        return $this->_restaurant;
     }
     public function setRestaurant() {
         $this->_restaurant = $restaurant;
@@ -106,19 +106,20 @@ class Hotel{
 
     }
 
-    public function reservationCount() {
+    public function reservationAccess() {
         //Un hôtel va accéder aux tableaux de réservations de chaque chambre lui appartenant, pour compter le nombre de chambre et faire le total des réservations
+        $result = "";
         foreach($this->_rooms as $room) {
-           
-            foreach($room->getReservations as $reservation){
+            foreach($room->getReservations() as $reservation){
 
-                print $reservation;
-            }
+                $result .= $reservation . ",<br>";
+            };
         }
+        return "L'hôtel " . $this->_name . " possède : <br>" . $result . "";
     }
 
     //Méthode magique : toString
     public function __toString() {
-        return  "Hôtel " . $this->_name . " à "  . $this->$_adress . ", " . $this->$_city . ", " . $this->$_postcode . ", " . $this->$_country . "<br>"; 
+        return  "Hôtel " . $this->_name . " à "  . $this->_adress . ", " . $this->_city . ", " . $this->_postcode . ", " . $this->_country . "<br>"; 
     }
 }
