@@ -93,21 +93,6 @@ class Hotel{
         return $result;
     }
 
-    public function nbRooms() { //On calcule le nombre de chambres dans le tableau rooms puis on affiche le total
-
-        count($_rooms);
-        return " " . $nbRooms . " ";
-
-    }
-    
-    public function nbReservedRooms() { //On compte le nombres de chambres avec le status "reservé"
-
-    }
-    
-    public function nbFreeRooms() { //On compte le nombre de chambres avec le status "libre"
-
-    }
-
     public function hotelReservations() {
         //Un hôtel va accéder aux tableaux de réservations de chaque chambre lui appartenant, pour compter le nombre de chambre et faire le total des réservations
         $result = "";

@@ -54,12 +54,6 @@ $reservation2 = new Reservation('10-16-2025', '1', false, '1', '11-05-2025', '11
         <h2>Réservations de l'hôtel Hilton **** Strasbourg</h2>
         <p><?php echo $hotel1->hotelReservations(); ?></p>
 
-        <h2>Réservations de l'hôtel Regent **** Paris</h2>
-        <p><?php echo $hotel2->hotelReservations(); ?></p>
-
-        <h2>Réservations de <?php print $client1; ?></h2>
-        <p><?php echo $client1->clientReservations(); ?></p>
-
         <div class="table">
             <table id="tableChambre" class="uk-table uk-table-striped">
                 <caption>Status des chambres de <strong>Hilton **** Strasbourg<strong></caption>
@@ -74,25 +68,31 @@ $reservation2 = new Reservation('10-16-2025', '1', false, '1', '11-05-2025', '11
                 <tbody>
                     <tr>
                         <td><?php echo $room1->getRoomNb() ?></td>
-                        <td><?php echo $room1->getPrice() ?></td>
+                        <td><?php echo "" . $room1->getPrice() . "€" ?></td>
                         <td><?php echo $room1->getWifi() ? "<span uk-icon='icon: rss; ratio: 1'></span>" : " " ?>
                         <td><?php echo $room1->getStatus() ? "<button id='libre' class='uk-button uk-button-default uk-button-small'> Libre</button>" : "<button id='reserve' class='uk-button uk-button-default uk-button-small'>Réservé</button>" ?></td>
                     </tr>
                     <tr>
                         <td><?php echo $room2->getRoomNb() ?></td>
-                        <td><?php echo $room2->getPrice() ?></td>
+                        <td><?php echo "". $room2->getPrice() . "€" ?></td>
                         <td><?php echo $room2->getWifi() ? "<span uk-icon='icon: rss; ratio: 1'></span>" : " " ?></td>
                         <td><?php echo $room2->getStatus() ? "<button id='libre' class='uk-button uk-button-default uk-button-small'> Libre</button>" : "<button id='reserve' class='uk-button uk-button-default uk-button-small'>Réservé</button>" ?></td>
                     </tr>
                     <tr>
                         <td><?php echo $room3->getRoomNb() ?></td>
-                        <td><?php echo $room3->getPrice() ?></td>
+                        <td><?php echo "" . $room3->getPrice() . "€" ?></td>
                         <td><?php echo $room3->getWifi() ? "<span uk-icon='icon: rss; ratio: 1'></span>" : " " ?></td>
                         <td><?php echo $room3->getStatus() ? "<button id='libre' class='uk-button uk-button-default uk-button-small'> Libre</button>" : "<button id='reserve' class='uk-button uk-button-default uk-button-small'>Réservé</button>" ?></td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+        <h2>Réservations de l'hôtel Regent **** Paris</h2>
+        <p><?php echo $hotel2->hotelReservations(); ?></p>
+
+        <h2>Réservations de <?php print $client1; ?></h2>
+        <p><?php echo $client1->clientReservations(); ?></p>
         
     </main>
     <footer>
