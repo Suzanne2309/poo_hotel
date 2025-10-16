@@ -35,10 +35,17 @@ class Client{
         $this->_reservations[] = $reservation;
     }
 
-    public function booking() {
-        
+    public function clientReservations() {
+        //On souhaite afficher les réservations du client
+        $afficher = "";
+        foreach($this->_reservations as $reservation) {
+
+                $afficher .= $reservation . ",<br>";
+        };
+        return "" . $afficher . "";
     }
 
+    
     //Méthode magique : toString
     public function __toString() {
         return "" . $this->_firstName . " " . $this->_lastName . " ";

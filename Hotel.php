@@ -94,8 +94,10 @@ class Hotel{
     }
 
     public function nbRooms() { //On calcule le nombre de chambres dans le tableau rooms puis on affiche le total
-//        $nbRooms = count($_rooms);
-//        return $nbRooms;
+
+        count($_rooms);
+        return " " . $nbRooms . " ";
+
     }
     
     public function nbReservedRooms() { //On compte le nombres de chambres avec le status "reservé"
@@ -106,7 +108,7 @@ class Hotel{
 
     }
 
-    public function reservationAccess() {
+    public function hotelReservations() {
         //Un hôtel va accéder aux tableaux de réservations de chaque chambre lui appartenant, pour compter le nombre de chambre et faire le total des réservations
         $result = "";
         foreach($this->_rooms as $room) {
@@ -120,6 +122,6 @@ class Hotel{
 
     //Méthode magique : toString
     public function __toString() {
-        return  "Hôtel " . $this->_name . " à "  . $this->_adress . ", " . $this->_city . ", " . $this->_postcode . ", " . $this->_country . "<br>"; 
+        return  "L'hôtel " . $this->_name . " au "  . $this->_adress . ", " . $this->_city . ", " . $this->_postcode . ", " . $this->_country . /* ".<br> Nombres de chambres : " . $this->nbRooms() .*/ "<br>";
     }
 }

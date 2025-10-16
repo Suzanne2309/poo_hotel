@@ -95,6 +95,6 @@ class Reservation{
 
     //méthode magique : toString
     public function __toString() {
-        return " Réservation du " . $this->_reservationDate . " par " . $this->_client . " à " . $this->_room . ". La réservation est pour " . $this->_nbPeoples . " personnes, du " . $this->_startDate . " au " . $this->_endDate . ".";
+        return "Réservation du " . $this->_reservationDate . " par " . $this->_client . " à " . $this->_room . "La réservation est pour " . $this->_nbPeoples . " personnes, du " . $this->_startDate . " au " . $this->_endDate . "";
     }
 }
